@@ -1,6 +1,5 @@
 require('express-async-errors')
-
-// const database = require('./database/sqlite')
+require('dotenv/config')
 
 const migrationRun = require('./database/sqlite/migrations')
 const AppError = require('./utils/AppError')
@@ -35,25 +34,7 @@ app.use((error, req, res, next) => {
   })
 })
 
-/* app.get('/', (req, res) => {
-  res.send('Hello, world!')
-})
-
-endereço url: localhost:3333/mensagem/5/João
-
-app.get('/mensagem/:id/:user', (req, res) => {
-  const { id, user } = req.params
-  res.send(`ID: ${id}. Para o usuário ${user}`)
-})
-
-endereço url: localhost:3333/users?page=5&limit=10
-
-app.get('/users', (req, res) => {
-  const { page, limit } = req.query
-  res.send(`Página: ${page}. Mostrar ${limit}`)
-}) */
-
-const PORT = 3333
+const PORT = process.env.PORT || 3333
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
